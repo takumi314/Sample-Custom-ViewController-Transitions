@@ -45,8 +45,8 @@ extension FlipPresentAnimationController: UIViewControllerAnimatedTransitioning 
         let finalFrame = transitionContext.finalFrame(for: toVC)
 
         // スナップショットのフレームと "from"ビューのカードを一致させて, 正確に覆えるように設定を施します
-        snapshot.frame = finalFrame
         snapshot.layer.cornerRadius = fromVC.view.layer.cornerRadius
+        snapshot.frame = originalFrame
         snapshot.layer.masksToBounds = true
 
         // 新たな "to"View をビュー階層に追加して非表示にする。その前面にはスナップショットが配置される。
