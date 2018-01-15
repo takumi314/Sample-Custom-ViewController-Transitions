@@ -55,9 +55,10 @@ extension FlipPresentAnimationController: UIViewControllerAnimatedTransitioning 
         containerView.addSubview(snapshot)
         toVC.view.isHidden = true
 
-        //
-//        AnimationHelper.perspectiveTransform(for: containerView)
-//        snapshot.layer.transform = AnimationHelper.yRotation(.pi / 2)
+        // z軸方向に平行移動する
+        AnimationHelper.perspectiveTransform(for: containerView, axes: [.z: -0.002])
+        // スナップショットをy軸まわりに半回転する
+        snapshot.layer.transform = AnimationHelper.yRotate(.pi / 2)
 
         // アニメーション時間を取得する
         let duration = transitionDuration(using: transitionContext)
@@ -71,12 +72,12 @@ extension FlipPresentAnimationController: UIViewControllerAnimatedTransitioning 
             animations: {
                 // 2
                 UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
-//                    fromVC.view.layer.transform = AnimationHelper.yRotation(-.pi / 2)
+                    fromVC.view.layer.transform = AnimationHelper.yRotate(-.pi / 2)
                 }
 
                 // 3
                 UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
-//                    snapshot.layer.transform = AnimationHelper.yRotation(0.0)
+                    snapshot.layer.transform = AnimationHelper.yRotate(0.0)
                 }
 
                 // 4
