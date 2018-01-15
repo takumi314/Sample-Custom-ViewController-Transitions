@@ -30,7 +30,7 @@ class AnimationHelper {
         return rotate(angle, x: 0, y: 0, z: 1)
     }
 
-    func perspectiveTransform(for containerView: UIView, axes: [Direction: CGFloat]) -> Void {
+    static func perspectiveTransform(for containerView: UIView, axes: [Direction: CGFloat]) -> Void {
         var transform = CATransform3DIdentity
         axes.forEach { axis in
             switch axis.key {
