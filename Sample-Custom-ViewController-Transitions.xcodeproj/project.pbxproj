@@ -14,8 +14,8 @@
 		E115E0EB200BB71200B6BDE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E115E0E9200BB71200B6BDE3 /* LaunchScreen.storyboard */; };
 		E115E0F6200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E0F5200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsTests.swift */; };
 		E115E101200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E100200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsUITests.swift */; };
-		E115E10F200BB86C00B6BDE3 /* AnimationControllers in Sources */ = {isa = PBXBuildFile; fileRef = E115E10E200BB86B00B6BDE3 /* AnimationControllers */; };
 		E115E113200CC81F00B6BDE3 /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */; };
+		E115E115200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +49,8 @@
 		E115E0FC200BB71200B6BDE3 /* Sample-Custom-ViewController-TransitionsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sample-Custom-ViewController-TransitionsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E115E100200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_Custom_ViewController_TransitionsUITests.swift; sourceTree = "<group>"; };
 		E115E102200BB71200B6BDE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E115E10E200BB86B00B6BDE3 /* AnimationControllers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnimationControllers; path = ../AnimationControllers; sourceTree = "<group>"; };
 		E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
+		E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlipPresentAnimationController.swift; path = "Sample-Custom-ViewController-Transitions/AnimationControllers/FlipPresentAnimationController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,7 @@
 		E115E110200BB87200B6BDE3 /* AnimationControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E115E10E200BB86B00B6BDE3 /* AnimationControllers */,
+				E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */,
 			);
 			name = AnimationControllers;
 			path = "New Group";
@@ -283,9 +283,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E115E113200CC81F00B6BDE3 /* AnimationHelper.swift in Sources */,
-				E115E10F200BB86C00B6BDE3 /* AnimationControllers in Sources */,
 				E115E0E3200BB71200B6BDE3 /* ViewController.swift in Sources */,
 				E115E0E1200BB71200B6BDE3 /* AppDelegate.swift in Sources */,
+				E115E115200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
