@@ -10,4 +10,12 @@ import UIKit
 
 class FlipPresentAnimationController: NSObject {
 
+    // To store an information about starting point for the animation
+    // タップした際のカードサイズを保持する
+    private let originalFrame: CGRect
+
+    init(originalFrame: CGRect) {
+        self.originalFrame = originalFrame
+    }
+
 }
