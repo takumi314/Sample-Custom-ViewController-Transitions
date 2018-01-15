@@ -50,43 +50,40 @@ extension FlipPresentAnimationController: UIViewControllerAnimatedTransitioning 
         snapshot.layer.masksToBounds = true
 
         // 新たな "to"View をビュー階層に追加して非表示にする。その前面にはスナップショットが配置される。
-        // ViewController.viewが見えず, snapshotのみが表示された状態になる
+        // toViewController.viewが見えず, snapshotのみが表示された状態になる
         containerView.addSubview(toVC.view)
         containerView.addSubview(snapshot)
         toVC.view.isHidden = true
 
-        // z軸方向に平行移動する
+        // z軸方向（手前に）平行移動する
         AnimationHelper.perspectiveTransform(for: containerView, axes: [.z: -0.002])
-        // スナップショットをy軸まわりに半回転する
+        // スナップショットをy軸まわりに90度回す
         snapshot.layer.transform = AnimationHelper.yRotate(.pi / 2)
 
         // アニメーション時間を取得する
         let duration = transitionDuration(using: transitionContext)
-
-
-        // 1
+        // 遷移時間とアニメーション間隔を一致させる
         UIView.animateKeyframes(
             withDuration: duration,
             delay: 0,
             options: .calculationModeCubic,
             animations: {
-                // 2
+                // "from"Viewを隠すため, "from"Viewをy軸まわりに-90度回す
                 UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
                     fromVC.view.layer.transform = AnimationHelper.yRotate(-.pi / 2)
                 }
 
-                // 3
+                // 真横の状態から裏返しスナップショットを明らかにする
                 UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
                     snapshot.layer.transform = AnimationHelper.yRotate(0.0)
                 }
 
-                // 4
+                // スクリーン全体を覆うように, スナップショットのframeを設定する
                 UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
                     snapshot.frame = finalFrame
                     snapshot.layer.cornerRadius = 0
                 }
         },
-            // 5
             completion: { _ in
                 toVC.view.isHidden = false
                 snapshot.removeFromSuperview()
