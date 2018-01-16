@@ -33,3 +33,13 @@ class CardFrontViewController: UIViewController {
     */
 
 }
+
+extension CardFrontViewController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FlipPresentAnimationController(originalFrame: view.frame)
+    }
+
+}
