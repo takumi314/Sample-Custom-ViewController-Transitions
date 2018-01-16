@@ -45,8 +45,8 @@ extension FlipPresentAnimationController: UIViewControllerAnimatedTransitioning 
         let finalFrame = transitionContext.finalFrame(for: toVC)
 
         // スナップショットのフレームと "from"ビューのカードを一致させて, 正確に覆えるように設定を施します
-        snapshot.layer.cornerRadius = fromVC.view.layer.cornerRadius
         snapshot.frame = originalFrame
+        snapshot.layer.cornerRadius = fromVC.view.layer.cornerRadius
         snapshot.layer.masksToBounds = true
 
         // 新たな "to"View をビュー階層に追加して非表示にする。その前面にはスナップショットが配置される。
@@ -59,9 +59,9 @@ extension FlipPresentAnimationController: UIViewControllerAnimatedTransitioning 
         AnimationHelper.perspectiveTransform(for: containerView, axes: [.z: -0.002])
         // スナップショットをy軸まわりに90度回す
         snapshot.layer.transform = AnimationHelper.yRotate(.pi / 2)
-
         // アニメーション時間を取得する
         let duration = transitionDuration(using: transitionContext)
+
         // 遷移時間とアニメーション間隔を一致させる
         UIView.animateKeyframes(
             withDuration: duration,
