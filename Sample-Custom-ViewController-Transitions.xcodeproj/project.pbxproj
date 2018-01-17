@@ -19,6 +19,7 @@
 		E115E118200E5E6100B6BDE3 /* CardFrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */; };
 		E115E11A200E63DC00B6BDE3 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E119200E63DB00B6BDE3 /* RevealViewController.swift */; };
 		E115E11D200F8D8B00B6BDE3 /* CommonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */; };
+		E115E11F200F955100B6BDE3 /* FilipDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFrontViewController.swift; sourceTree = "<group>"; };
 		E115E119200E63DB00B6BDE3 /* RevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 		E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProtocol.swift; sourceTree = "<group>"; };
+		E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilipDismissAnimationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */,
+				E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */,
 			);
 			path = AnimationControllers;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E115E11F200F955100B6BDE3 /* FilipDismissAnimationController.swift in Sources */,
 				E115E118200E5E6100B6BDE3 /* CardFrontViewController.swift in Sources */,
 				E115E11A200E63DC00B6BDE3 /* RevealViewController.swift in Sources */,
 				E115E11D200F8D8B00B6BDE3 /* CommonProtocol.swift in Sources */,
