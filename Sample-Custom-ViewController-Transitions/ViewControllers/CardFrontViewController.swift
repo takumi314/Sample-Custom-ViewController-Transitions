@@ -34,6 +34,18 @@ class CardFrontViewController: UIViewController {
 
 }
 
+extension CardFrontViewController {
+
+    // MARK: - Private methods
+
+    private func present() {
+        let destination = RevealViewController()
+        destination.transitioningDelegate = self
+        present(destination, animated: true, completion: nil)
+    }
+
+}
+
 extension CardFrontViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController,
