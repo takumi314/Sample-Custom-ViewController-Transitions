@@ -33,3 +33,13 @@ class RevealViewController: UIViewController {
     */
 
 }
+
+extension RevealViewController {
+
+    // MARK: - Private methods
+
+    private func dismiss(completion: (() -> Void)?) {
+        dismiss(animated: true, completion: completion)
+    }
+
+}
