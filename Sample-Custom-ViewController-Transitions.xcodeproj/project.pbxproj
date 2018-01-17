@@ -17,6 +17,7 @@
 		E115E113200CC81F00B6BDE3 /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */; };
 		E115E115200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */; };
 		E115E118200E5E6100B6BDE3 /* CardFrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */; };
+		E115E11A200E63DC00B6BDE3 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E119200E63DB00B6BDE3 /* RevealViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlipPresentAnimationController.swift; path = "Sample-Custom-ViewController-Transitions/AnimationControllers/FlipPresentAnimationController.swift"; sourceTree = SOURCE_ROOT; };
 		E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFrontViewController.swift; sourceTree = "<group>"; };
+		E115E119200E63DB00B6BDE3 /* RevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */,
+				E115E119200E63DB00B6BDE3 /* RevealViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E115E118200E5E6100B6BDE3 /* CardFrontViewController.swift in Sources */,
+				E115E11A200E63DC00B6BDE3 /* RevealViewController.swift in Sources */,
 				E115E113200CC81F00B6BDE3 /* AnimationHelper.swift in Sources */,
 				E115E0E3200BB71200B6BDE3 /* ViewController.swift in Sources */,
 				E115E0E1200BB71200B6BDE3 /* AppDelegate.swift in Sources */,
