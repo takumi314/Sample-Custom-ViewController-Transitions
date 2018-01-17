@@ -10,6 +10,12 @@ import UIKit
 
 class FilipDismissAnimationController: NSObject {
 
+    private let originalFrame: CGRect
+
+    init(originalFrame: CGRect) {
+        self.originalFrame = originalFrame
+    }
+
 }
 
 extension FilipDismissAnimationController: UIViewControllerAnimatedTransitioning {
