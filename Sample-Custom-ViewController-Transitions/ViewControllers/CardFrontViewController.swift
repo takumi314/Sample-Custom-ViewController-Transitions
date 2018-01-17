@@ -39,7 +39,9 @@ extension CardFrontViewController {
     // MARK: - Private methods
 
     private func present() {
-        let destination = RevealViewController()
+        guard let destination = storyboard?.instantiateViewController(withIdentifier: RevealViewController.identifier) else {
+            return
+        }
         destination.transitioningDelegate = self
         present(destination, animated: true, completion: nil)
     }
