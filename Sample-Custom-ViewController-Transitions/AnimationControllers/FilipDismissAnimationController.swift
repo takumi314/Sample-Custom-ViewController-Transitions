@@ -10,10 +10,10 @@ import UIKit
 
 class FilipDismissAnimationController: NSObject {
 
-    private let originalFrame: CGRect
+    private let destinationFrame: CGRect
 
-    init(originalFrame: CGRect) {
-        self.originalFrame = originalFrame
+    init(destinationFrame: CGRect) {
+        self.destinationFrame = destinationFrame
     }
 
 }
