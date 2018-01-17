@@ -8,6 +8,8 @@
 
 import UIKit
 
-class FilipDismissAnimated: NSObject {
+class FilipDismissAnimationController: NSObject {
+
+}
 
 }
