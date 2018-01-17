@@ -7,3 +7,27 @@
 //
 
 import Foundation
+import UIKit
+
+extension NSObjectProtocol {
+    var className: String {
+        return self.description
+    }
+
+}
+
+protocol Identifable: NSObjectProtocol {
+    var identifier: String { get }
+}
+
+extension Identifable where Self: UIViewController {
+    var identifier: String {
+        get {
+            return self.className
+        }
+    }
+}
+
+extension UIViewController: Identifable {
+
+}
