@@ -32,6 +32,9 @@ class CardFrontViewController: UIViewController {
     }
     */
 
+    @IBAction func onFlipped(_ sender: UIButton) {
+        present()
+    }
 }
 
 extension CardFrontViewController {

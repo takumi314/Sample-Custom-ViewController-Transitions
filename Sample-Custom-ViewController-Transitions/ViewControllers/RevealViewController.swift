@@ -32,6 +32,9 @@ class RevealViewController: UIViewController {
     }
     */
 
+    @IBAction func onBack(_ sender: UIButton) {
+        dismiss(completion: nil)
+    }
 }
 
 extension RevealViewController {
