@@ -16,6 +16,9 @@
 		E115E101200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E100200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsUITests.swift */; };
 		E115E113200CC81F00B6BDE3 /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */; };
 		E115E115200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */; };
+		E115E118200E5E6100B6BDE3 /* CardFrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */; };
+		E115E11A200E63DC00B6BDE3 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E119200E63DB00B6BDE3 /* RevealViewController.swift */; };
+		E115E11D200F8D8B00B6BDE3 /* CommonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		E115E102200BB71200B6BDE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlipPresentAnimationController.swift; path = "Sample-Custom-ViewController-Transitions/AnimationControllers/FlipPresentAnimationController.swift"; sourceTree = SOURCE_ROOT; };
+		E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFrontViewController.swift; sourceTree = "<group>"; };
+		E115E119200E63DB00B6BDE3 /* RevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
+		E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,8 @@
 		E115E0DF200BB71100B6BDE3 /* Sample-Custom-ViewController-Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				E115E11B200F8D6600B6BDE3 /* Commons */,
+				E115E116200E5DA100B6BDE3 /* ViewControllers */,
 				E115E111200CC7E700B6BDE3 /* Helpers */,
 				E115E110200BB87200B6BDE3 /* AnimationControllers */,
 				E115E0E0200BB71100B6BDE3 /* AppDelegate.swift */,
@@ -136,8 +144,7 @@
 			children = (
 				E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */,
 			);
-			name = AnimationControllers;
-			path = "New Group";
+			path = AnimationControllers;
 			sourceTree = "<group>";
 		};
 		E115E111200CC7E700B6BDE3 /* Helpers */ = {
@@ -146,6 +153,23 @@
 				E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E115E116200E5DA100B6BDE3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */,
+				E115E119200E63DB00B6BDE3 /* RevealViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E115E11B200F8D6600B6BDE3 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */,
+			);
+			path = Commons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +306,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E115E118200E5E6100B6BDE3 /* CardFrontViewController.swift in Sources */,
+				E115E11A200E63DC00B6BDE3 /* RevealViewController.swift in Sources */,
+				E115E11D200F8D8B00B6BDE3 /* CommonProtocol.swift in Sources */,
 				E115E113200CC81F00B6BDE3 /* AnimationHelper.swift in Sources */,
 				E115E0E3200BB71200B6BDE3 /* ViewController.swift in Sources */,
 				E115E0E1200BB71200B6BDE3 /* AppDelegate.swift in Sources */,
