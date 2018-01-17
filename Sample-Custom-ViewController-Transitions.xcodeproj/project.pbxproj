@@ -141,8 +141,7 @@
 			children = (
 				E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */,
 			);
-			name = AnimationControllers;
-			path = "New Group";
+			path = AnimationControllers;
 			sourceTree = "<group>";
 		};
 		E115E111200CC7E700B6BDE3 /* Helpers */ = {
