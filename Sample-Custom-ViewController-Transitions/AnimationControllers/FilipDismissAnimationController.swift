@@ -52,7 +52,7 @@ extension FilipDismissAnimationController: UIViewControllerAnimatedTransitioning
         UIView.animateKeyframes(
             withDuration: duration,
             delay: 0,
-            options: UIViewKeyframeAnimationOptions.calculationModeCubic,
+            options: .calculationModeCubic,
             animations: {
                 UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
                     snapshot.frame = self.destinationFrame
