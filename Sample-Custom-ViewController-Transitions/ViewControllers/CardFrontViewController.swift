@@ -10,6 +10,8 @@ import UIKit
 
 class CardFrontViewController: UIViewController {
 
+    static let cardCornerRadius: CGFloat = 25
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
