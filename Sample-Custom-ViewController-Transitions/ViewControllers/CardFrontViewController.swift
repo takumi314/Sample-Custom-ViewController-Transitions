@@ -59,4 +59,11 @@ extension CardFrontViewController: UIViewControllerTransitioningDelegate {
         return FlipPresentAnimationController(originalFrame: view.frame)
     }
 
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let _ = dismissed as? RevealViewController else {
+            return nil
+        }
+        return FilipDismissAnimationController(destinationFrame: view.frame)
+    }
+
 }
