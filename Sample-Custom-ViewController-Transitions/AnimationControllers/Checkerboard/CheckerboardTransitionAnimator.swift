@@ -81,6 +81,51 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
             UIGraphicsEndImageContext()
         }
 
+        let transitionContainer = UIView(frame: containerView.frame)
+        transitionContainer.isOpaque = true
+        transitionContainer.backgroundColor = .black
+        containerView.addSubview(transitionContainer)
+
+        /// Apply a perpective transform to the sublayers of transitionContainer.
+        let dz = CGFloat(1.0 / -900.0)
+        AnimationHelper.perspectiveTransform(for: transitionContainer, axes: [.z: dz])
+
+        /// The size and number of slices is a function of the width.
+        let sliceSize = round(CGFloat(transitionContainer.frame.width) / CGFloat(10.0))
+        let horizontalSlices = Int(ceil(transitionContainer.frame.width / sliceSize))
+        let verticalSlices = Int(ceil(transitionContainer.frame.height / sliceSize))
+
+        // transitionSpacing controls the transition duration for each slice.
+        // Higher values produce longer animations with multiple slices having
+        // their animations 'in flight' simultaneously.
+        let transitionSpacing: CGFloat = 160.0
+        let duration = transitionDuration(using: transitionContext)
+
+
+        var vector: CGVector
+        if isPush {
+            let maxX = transitionContainer.bounds.maxX
+            let maxY = transitionContainer.bounds.maxY
+            let minX = transitionContainer.bounds.minX
+            let minY = transitionContainer.bounds.minY
+            vector = CGVector(dx: maxX - minX, dy: maxY - minY)
+        } else {
+            let maxX = transitionContainer.bounds.maxX
+            let maxY = transitionContainer.bounds.maxY
+            let minX = transitionContainer.bounds.minX
+            let minY = transitionContainer.bounds.minY
+            vector = CGVector(dx: minX - maxX, dy: minY - maxY)
+        }
+
+        let vectorLength = sqrt(vector.dx * vector.dx + vector.dy * vector.dy)
+        let unitVector = CGVector(dx: vector.dx / vectorLength, dy: vector.dy / vectorLength)
+
+        for y in 0 ..< verticalSlices {
+            for x in 0 ..< horizontalSlices {
+            }
+        }
+
+
 
     }
 }
