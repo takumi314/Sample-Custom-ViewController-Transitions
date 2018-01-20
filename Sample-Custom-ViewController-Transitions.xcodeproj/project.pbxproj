@@ -86,6 +86,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E107F1192013839000CDDF2C /* Checkerboard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Checkerboard;
+			sourceTree = "<group>";
+		};
 		E115E0D4200BB71100B6BDE3 = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +151,7 @@
 		E115E110200BB87200B6BDE3 /* AnimationControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E107F1192013839000CDDF2C /* Checkerboard */,
 				E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */,
 				E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */,
 			);
