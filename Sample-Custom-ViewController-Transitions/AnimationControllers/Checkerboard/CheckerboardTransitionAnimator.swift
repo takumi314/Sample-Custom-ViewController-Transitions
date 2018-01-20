@@ -11,3 +11,16 @@ import UIKit
 class CheckerboardTransitionAnimator: NSObject {
 
 }
+
+extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning {
+
+    static let transionTime = 2.0
+
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return CheckerboardTransitionAnimator.transionTime
+    }
+
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+
+    }
+}
