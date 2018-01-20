@@ -122,6 +122,11 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
 
         for y in 0 ..< verticalSlices {
             for x in 0 ..< horizontalSlices {
+                pasteCheckboards(indices: (x, y),
+                                 sliceSize: sliceSize,
+                                 containerView: containerView,
+                                 fromViewSnapshot: fromViewSnapshot,
+                                 toViewSnapshot: toViewSnapshot)
             }
         }
 
