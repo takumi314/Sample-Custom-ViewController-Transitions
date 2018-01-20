@@ -134,7 +134,10 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
 
     }
 
-    func pasteCheckboards(indices latice: (column: Int, row: Int), sliceSize: CGFloat, containerView: UIView, fromViewSnapshot: UIImage, toViewSnapshot: UIImage) -> Void {
+
+    // MARK: - Private methods
+
+    private func pasteCheckboards(indices latice: (column: Int, row: Int), sliceSize: CGFloat, containerView: UIView, fromViewSnapshot: UIImage, toViewSnapshot: UIImage) -> Void {
         let x = CGFloat(latice.column)
         let y = CGFloat(latice.row)
 
