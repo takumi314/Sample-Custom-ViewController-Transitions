@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E107F11B2013848000CDDF2C /* CheckerboardTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107F11A2013848000CDDF2C /* CheckerboardTransitionAnimator.swift */; };
 		E115E0E1200BB71200B6BDE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E0E0200BB71100B6BDE3 /* AppDelegate.swift */; };
 		E115E0E3200BB71200B6BDE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E0E2200BB71200B6BDE3 /* ViewController.swift */; };
 		E115E0E6200BB71200B6BDE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E115E0E4200BB71200B6BDE3 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E107F11A2013848000CDDF2C /* CheckerboardTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerboardTransitionAnimator.swift; sourceTree = "<group>"; };
 		E115E0DD200BB71100B6BDE3 /* Sample-Custom-ViewController-Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sample-Custom-ViewController-Transitions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E115E0E0200BB71100B6BDE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E115E0E2200BB71200B6BDE3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		E107F1192013839000CDDF2C /* Checkerboard */ = {
 			isa = PBXGroup;
 			children = (
+				E107F11A2013848000CDDF2C /* CheckerboardTransitionAnimator.swift */,
 			);
 			path = Checkerboard;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E107F11B2013848000CDDF2C /* CheckerboardTransitionAnimator.swift in Sources */,
 				E115E11F200F955100B6BDE3 /* FilipDismissAnimationController.swift in Sources */,
 				E115E118200E5E6100B6BDE3 /* CardFrontViewController.swift in Sources */,
 				E115E11A200E63DC00B6BDE3 /* RevealViewController.swift in Sources */,
