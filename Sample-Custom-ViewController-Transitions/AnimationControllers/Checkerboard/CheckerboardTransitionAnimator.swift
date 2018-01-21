@@ -81,13 +81,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
         /// If a push is being animated, the incoming view controller will have a
         /// higher index on the navigation stack than the current top view
         /// controller.
-        guard let toNC = toVC.navigationController,
-            let toIndex = toNC.viewControllers.index(of: toVC),
-            let fromNC = fromVC.navigationController,
-            let fromIndex = fromNC.viewControllers.index(of: fromVC) else {
-                return
-        }
-        let isPush = toIndex > fromIndex
+        let isPush = toVC is RevealViewController
 
         /// Our animation will be operating o.n snapshots of the fromView and toView,
         /// so the final frame of toView can be configured now.
