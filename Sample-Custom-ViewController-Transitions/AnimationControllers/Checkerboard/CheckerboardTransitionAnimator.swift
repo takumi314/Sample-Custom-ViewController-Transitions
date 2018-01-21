@@ -250,7 +250,72 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
 
     // MARK: - Private methods
 
-    private func animateCheckboard(indices latice: (column: Int, row: Int), sliceSize: CGFloat, transitionContainer: UIView, numberOfhorizontalSlice horizontalSlices: Int, isPush: Bool, transitionVector: (vector: CGVector, unit: CGVector, length: CGFloat, spacing: CGFloat, duration: TimeInterval), sliceAnimationsPending: Int, transitionContext: UIViewControllerContextTransitioning, completion: (() -> Void)?) {
+    private func pasteCheckboards(indices latice: (column: Int, row: Int), sliceSize: CGFloat, containerView: UIView, transitionContainer: UIView, fromViewSnapshot: UIImage, toViewSnapshot: UIImage) -> Void {
+        let x = CGFloat(latice.column)
+        let y = CGFloat(latice.row)
+
+        let fromContentLayer = CALayer()
+        fromContentLayer.frame = CGRect(x: x*sliceSize*(-1.0),
+                                        y: y*sliceSize*(-1.0),
+                                        width: containerView.bounds.size.width,
+                                        height: containerView.bounds.size.height)
+        fromContentLayer.rasterizationScale = fromViewSnapshot.scale
+        fromContentLayer.contents = fromViewSnapshot.cgImage
+
+        let toContentLayer = CALayer()
+        toContentLayer.frame = CGRect(x: x*sliceSize*(-1.0),
+                                      y: y*sliceSize*(-1.0),
+                                      width: containerView.bounds.size.width,
+                                      height: containerView.bounds.size.height)
+        // Snapshotting the toView was deferred so we must also defer applying
+        // the snapshot to the layer's contents.
+        DispatchQueue.main.async {
+            // Disable actions so the contents are applied without animation.
+            let wereActionDisabled = CATransaction.disableActions()
+            CATransaction.setDisableActions(true)
+
+            toContentLayer.rasterizationScale = toViewSnapshot.scale
+            toContentLayer.contents = toViewSnapshot.cgImage
+
+            CATransaction.setDisableActions(wereActionDisabled)
+        }
+
+
+        let toCheckboardSquareView = UIView()
+        toCheckboardSquareView.frame = CGRect(x: x*sliceSize, y: y*sliceSize, width: sliceSize, height: sliceSize)
+        toCheckboardSquareView.isOpaque = true
+        toCheckboardSquareView.layer.masksToBounds = true
+        toCheckboardSquareView.layer.isDoubleSided = false
+        toCheckboardSquareView.layer.transform = AnimationHelper.yRotate( .pi)
+        toCheckboardSquareView.layer.addSublayer(toContentLayer)
+
+        let fromCheckboardSquareView = UIView()
+        fromCheckboardSquareView.frame = CGRect(x: x*sliceSize, y: y*sliceSize, width: sliceSize, height: sliceSize)
+        fromCheckboardSquareView.isOpaque = false
+        fromCheckboardSquareView.layer.masksToBounds = true
+        fromCheckboardSquareView.layer.isDoubleSided = false
+        fromCheckboardSquareView.layer.transform = AnimationHelper.identity
+        fromCheckboardSquareView.layer.addSublayer(fromContentLayer)
+
+        transitionContainer.addSubview(toCheckboardSquareView)
+        transitionContainer.addSubview(fromCheckboardSquareView)
+    }
+
+    private func animateCheckboard(indices latice: (column: Int, row: Int),
+                                   sliceSize: CGFloat,
+                                   transitionContainer: UIView,
+                                   numberOfhorizontalSlice horizontalSlices: Int,
+                                   isPush: Bool,
+                                   transitionVector: (vector: CGVector,
+                                                        unit: CGVector,
+                                                        length: CGFloat,
+                                                        spacing: CGFloat,
+                                                        duration: TimeInterval),
+                                   sliceAnimationsPending: Int,
+                                   transitionContext: UIViewControllerContextTransitioning,
+                                   animations: @escaping ((_ fromView: UIView, _ toView: UIView) -> Void),
+                                   completion: (() -> Void)?) {
+
         let x = Int(latice.column)
         let y = Int(latice.row)
 
@@ -314,57 +379,6 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                     transitionContext.completeTransition(!wasCancelled)
                 }
         })
-    }
-
-    private func pasteCheckboards(indices latice: (column: Int, row: Int), sliceSize: CGFloat, containerView: UIView, transitionContainer: UIView, fromViewSnapshot: UIImage, toViewSnapshot: UIImage) -> Void {
-        let x = CGFloat(latice.column)
-        let y = CGFloat(latice.row)
-
-        let fromContentLayer = CALayer()
-        fromContentLayer.frame = CGRect(x: x*sliceSize*(-1.0),
-                                        y: y*sliceSize*(-1.0),
-                                        width: containerView.bounds.size.width,
-                                        height: containerView.bounds.size.height)
-        fromContentLayer.rasterizationScale = fromViewSnapshot.scale
-        fromContentLayer.contents = fromViewSnapshot.cgImage
-
-        let toContentLayer = CALayer()
-        toContentLayer.frame = CGRect(x: x*sliceSize*(-1.0),
-                                      y: y*sliceSize*(-1.0),
-                                      width: containerView.bounds.size.width,
-                                      height: containerView.bounds.size.height)
-        // Snapshotting the toView was deferred so we must also defer applying
-        // the snapshot to the layer's contents.
-        DispatchQueue.main.async {
-            // Disable actions so the contents are applied without animation.
-            let wereActionDisabled = CATransaction.disableActions()
-            CATransaction.setDisableActions(true)
-
-            toContentLayer.rasterizationScale = toViewSnapshot.scale
-            toContentLayer.contents = toViewSnapshot.cgImage
-
-            CATransaction.setDisableActions(wereActionDisabled)
-        }
-
-
-        let toCheckboardSquareView = UIView()
-        toCheckboardSquareView.frame = CGRect(x: x*sliceSize, y: y*sliceSize, width: sliceSize, height: sliceSize)
-        toCheckboardSquareView.isOpaque = true
-        toCheckboardSquareView.layer.masksToBounds = true
-        toCheckboardSquareView.layer.isDoubleSided = false
-        toCheckboardSquareView.layer.transform = AnimationHelper.yRotate( .pi)
-        toCheckboardSquareView.layer.addSublayer(toContentLayer)
-
-        let fromCheckboardSquareView = UIView()
-        fromCheckboardSquareView.frame = CGRect(x: x*sliceSize, y: y*sliceSize, width: sliceSize, height: sliceSize)
-        fromCheckboardSquareView.isOpaque = false
-        fromCheckboardSquareView.layer.masksToBounds = true
-        fromCheckboardSquareView.layer.isDoubleSided = false
-        fromCheckboardSquareView.layer.transform = AnimationHelper.identity
-        fromCheckboardSquareView.layer.addSublayer(fromContentLayer)
-
-        transitionContainer.addSubview(toCheckboardSquareView)
-        transitionContainer.addSubview(fromCheckboardSquareView)
     }
 
 }
