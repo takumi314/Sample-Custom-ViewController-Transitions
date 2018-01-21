@@ -250,6 +250,72 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
 
     // MARK: - Private methods
 
+    private func animateCheckboard(indices latice: (column: Int, row: Int), sliceSize: CGFloat, transitionContainer: UIView, numberOfhorizontalSlice horizontalSlices: Int, isPush: Bool, transitionVector: (vector: CGVector, unit: CGVector, length: CGFloat, spacing: CGFloat, duration: TimeInterval), sliceAnimationsPending: Int, transitionContext: UIViewControllerContextTransitioning, completion: (() -> Void)?) {
+        let x = Int(latice.column)
+        let y = Int(latice.row)
+
+        let toCheckboardSquareView = transitionContainer.subviews[y * horizontalSlices * 2 + (x * 2)]
+        let fromCheckboardSquareView = transitionContainer.subviews[y * horizontalSlices * 2 + (x * 2 + 1)]
+
+        var sliceOriginVector: CGVector
+        if isPush {
+            // Define a vector from the origin of transitionContainer to the
+            // top left corner of the slice.
+            let squareViewX = fromCheckboardSquareView.frame.minX
+            let squareViewY = fromCheckboardSquareView.frame.minY
+            let containerX = transitionContainer.frame.minX
+            let containerY = transitionContainer.frame.minY
+            sliceOriginVector = CGVector(dx: squareViewX - containerX,
+                                         dy: squareViewY - containerY)
+        } else {
+            // Define a vector from the bottom right corner of
+            // transitionContainer to the bottom right corner of the slice.
+            let squareViewX = fromCheckboardSquareView.frame.maxX
+            let squareViewY = fromCheckboardSquareView.frame.maxY
+            let containerX = transitionContainer.frame.maxX
+            let containerY = transitionContainer.frame.maxY
+            sliceOriginVector = CGVector(dx: squareViewX - containerX,
+                                         dy: squareViewY - containerY)
+        }
+
+        // Project sliceOriginVector onto transitionVector.
+        let dot = sliceOriginVector.dx * transitionVector.vector.dx + sliceOriginVector.dy * transitionVector.vector.dy
+        let projection = CGVector(dx: transitionVector.unit.dx * dot / transitionVector.length,
+                                  dy: transitionVector.unit.dy * dot / transitionVector.length)
+
+
+        // Compute the length of the projection.
+        let projectionLength = CGFloat(sqrt(projection.dx * projection.dx + projection.dy * projection.dy))
+
+        let startTime = TimeInterval(projectionLength / (projectionLength + transitionVector.spacing)) * transitionVector.duration
+        let duration = TimeInterval((projectionLength + transitionVector.length) / (transitionVector.length + transitionVector.spacing)) * transitionVector.duration - startTime
+
+        CheckerboardTransitionAnimator.status.add()
+
+        UIView.animate(
+            withDuration: duration,
+            delay: startTime,
+            options: [.curveEaseInOut],
+            animations: {
+                fromCheckboardSquareView.layer.transform = AnimationHelper.yRotate( .pi)
+                toCheckboardSquareView.layer.transform = AnimationHelper.identity
+        },
+            completion: { (isFinished: Bool) in
+                // Finish the transition once the final animation completes.
+                CheckerboardTransitionAnimator.status.reduce()
+                if CheckerboardTransitionAnimator.status == .ready {
+                    let wasCancelled = transitionContext.transitionWasCancelled
+
+                    transitionContainer.removeFromSuperview()
+
+                    // When we complete, tell the transition context
+                    // passing along the BOOL that indicates whether the transition
+                    // finished or not.
+                    transitionContext.completeTransition(!wasCancelled)
+                }
+        })
+    }
+
     private func pasteCheckboards(indices latice: (column: Int, row: Int), sliceSize: CGFloat, containerView: UIView, transitionContainer: UIView, fromViewSnapshot: UIImage, toViewSnapshot: UIImage) -> Void {
         let x = CGFloat(latice.column)
         let y = CGFloat(latice.row)
