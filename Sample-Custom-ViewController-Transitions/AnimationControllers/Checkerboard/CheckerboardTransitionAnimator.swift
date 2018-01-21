@@ -126,6 +126,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                 pasteCheckboards(indices: (x, y),
                                  sliceSize: sliceSize,
                                  containerView: containerView,
+                                 transitionContainer: transitionContainer,
                                  fromViewSnapshot: fromViewSnapshot,
                                  toViewSnapshot: toViewSnapshot)
             }
@@ -204,7 +205,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
 
     // MARK: - Private methods
 
-    private func pasteCheckboards(indices latice: (column: Int, row: Int), sliceSize: CGFloat, containerView: UIView, fromViewSnapshot: UIImage, toViewSnapshot: UIImage) -> Void {
+    private func pasteCheckboards(indices latice: (column: Int, row: Int), sliceSize: CGFloat, containerView: UIView, transitionContainer: UIView, fromViewSnapshot: UIImage, toViewSnapshot: UIImage) -> Void {
         let x = CGFloat(latice.column)
         let y = CGFloat(latice.row)
 
@@ -251,8 +252,8 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
         fromCheckboardSquareView.layer.transform = AnimationHelper.identity
         fromCheckboardSquareView.layer.addSublayer(fromContentLayer)
 
-        containerView.addSubview(toCheckboardSquareView)
-        containerView.addSubview(fromCheckboardSquareView)
+        transitionContainer.addSubview(toCheckboardSquareView)
+        transitionContainer.addSubview(fromCheckboardSquareView)
     }
 
 }
