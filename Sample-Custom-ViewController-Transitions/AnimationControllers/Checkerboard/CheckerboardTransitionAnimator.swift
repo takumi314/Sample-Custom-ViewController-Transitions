@@ -99,26 +99,27 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
         // Higher values produce longer animations with multiple slices having
         // their animations 'in flight' simultaneously.
         let transitionSpacing: CGFloat = 160.0
-        let duration = transitionDuration(using: transitionContext)
+        let tDuration = transitionDuration(using: transitionContext)
 
 
-        var vector: CGVector
+        var transitionVector: CGVector
         if isPush {
             let maxX = transitionContainer.bounds.maxX
             let maxY = transitionContainer.bounds.maxY
             let minX = transitionContainer.bounds.minX
             let minY = transitionContainer.bounds.minY
-            vector = CGVector(dx: maxX - minX, dy: maxY - minY)
+            transitionVector = CGVector(dx: maxX - minX, dy: maxY - minY)
         } else {
             let maxX = transitionContainer.bounds.maxX
             let maxY = transitionContainer.bounds.maxY
             let minX = transitionContainer.bounds.minX
             let minY = transitionContainer.bounds.minY
-            vector = CGVector(dx: minX - maxX, dy: minY - maxY)
+            transitionVector = CGVector(dx: minX - maxX, dy: minY - maxY)
         }
 
-        let vectorLength = sqrt(vector.dx * vector.dx + vector.dy * vector.dy)
-        let unitVector = CGVector(dx: vector.dx / vectorLength, dy: vector.dy / vectorLength)
+        let vectorLength = CGFloat(sqrt(transitionVector.dx * transitionVector.dx + transitionVector.dy * transitionVector.dy))
+        let unitVector = CGVector(dx: transitionVector.dx / vectorLength,
+                                  dy: transitionVector.dy / vectorLength)
 
         for y in 0 ..< verticalSlices {
             for x in 0 ..< horizontalSlices {
