@@ -177,7 +177,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                 UIView.animate(
                     withDuration: duration,
                     delay: startTime,
-                    options: .allowAnimatedContent,
+                    options: [.curveEaseInOut],
                     animations: {
                         toCheckboardSquareView.layer.transform = CATransform3DIdentity
                         fromCheckboardSquareView.layer.transform = AnimationHelper.yRotate( .pi)
