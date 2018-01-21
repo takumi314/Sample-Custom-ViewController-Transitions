@@ -193,23 +193,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                                        spacing: transitionSpacing,
                                        duration: tDuration),
                     sliceAnimationsPending: 0,
-                    transitionContext: transitionContext,
-                },
-                    completion: { (isFinished: Bool) in
-                        // Finish the transition once the final animation completes.
-                        CheckerboardTransitionAnimator.status.reduce()
-                        print(CheckerboardTransitionAnimator.status)
-                        if CheckerboardTransitionAnimator.status == .ready {
-                            let wasCancelled = transitionContext.transitionWasCancelled
-
-                            transitionContainer.removeFromSuperview()
-
-                            // When we complete, tell the transition context
-                            // passing along the BOOL that indicates whether the transition
-                            // finished or not.
-                            transitionContext.completeTransition(!wasCancelled)
-                        }
-                })
+                    transitionContext: transitionContext)
             }
         }
 
@@ -280,9 +264,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                                                         spacing: CGFloat,
                                                         duration: TimeInterval),
                                    sliceAnimationsPending: Int,
-                                   transitionContext: UIViewControllerContextTransitioning,
-                                   animations: @escaping ((_ fromView: UIView, _ toView: UIView) -> Void),
-                                   completion: (() -> Void)?) {
+                                   transitionContext: UIViewControllerContextTransitioning) {
 
         let x = Int(latice.column)
         let y = Int(latice.row)
