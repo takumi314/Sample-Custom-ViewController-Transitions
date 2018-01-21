@@ -131,7 +131,73 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
             }
         }
 
+        // Used to track how many slices have animations which are still in flight.
+        var sliceAnimationsPending = 0
 
+        for y in 0 ..< verticalSlices {
+            for x in 0 ..< horizontalSlices {
+
+                let toCheckboardSquareView = transitionContainer.subviews[y * horizontalSlices * 2 + (x * 2)]
+                let fromCheckboardSquareView = transitionContainer.subviews[y * horizontalSlices * 2 + (x * 2 + 1)]
+
+                var sliceOriginVector: CGVector
+                if isPush {
+                    // Define a vector from the origin of transitionContainer to the
+                    // top left corner of the slice.
+                    let squareViewX = fromCheckboardSquareView.frame.minX
+                    let squareViewY = fromCheckboardSquareView.frame.minY
+                    let containerX = transitionContainer.frame.minX
+                    let containerY = transitionContainer.frame.minY
+                    sliceOriginVector = CGVector(dx: squareViewX - containerX,
+                                                 dy: squareViewY - containerY)
+                } else {
+                    // Define a vector from the bottom right corner of
+                    // transitionContainer to the bottom right corner of the slice.
+                    let squareViewX = fromCheckboardSquareView.frame.maxX
+                    let squareViewY = fromCheckboardSquareView.frame.maxY
+                    let containerX = transitionContainer.frame.maxX
+                    let containerY = transitionContainer.frame.maxY
+                    sliceOriginVector = CGVector(dx: squareViewX - containerX,
+                                                 dy: squareViewY - containerY)
+                }
+
+                // Project sliceOriginVector onto transitionVector.
+                let dot = sliceOriginVector.dx * transitionVector.dx + sliceOriginVector.dy * transitionVector.dy
+                let projection = CGVector(dx: unitVector.dx * dot / vectorLength,
+                                          dy: unitVector.dy * dot / vectorLength)
+
+                // Compute the length of the projection.
+                let projectionLength = CGFloat(sqrt(projection.dx * projection.dx + projection.dy * projection.dy))
+
+                let startTime = TimeInterval(projectionLength / (projectionLength + transitionSpacing)) * tDuration
+                let duration = TimeInterval((projectionLength + vectorLength) / (vectorLength + transitionSpacing)) * tDuration - startTime
+
+                sliceAnimationsPending += 1
+
+                UIView.animate(
+                    withDuration: duration,
+                    delay: startTime,
+                    options: .allowAnimatedContent,
+                    animations: {
+                        toCheckboardSquareView.layer.transform = CATransform3DIdentity
+                        fromCheckboardSquareView.layer.transform = AnimationHelper.yRotate( .pi)
+                },
+                    completion: { (isFinished: Bool) in
+                        // Finish the transition once the final animation completes.
+                        sliceAnimationsPending -= 1
+                        if sliceAnimationsPending == 0 {
+                            let wasCancelled = transitionContext.transitionWasCancelled
+
+                            transitionContainer.removeFromSuperview()
+
+                            // When we complete, tell the transition context
+                            // passing along the BOOL that indicates whether the transition
+                            // finished or not.
+                            transitionContext.completeTransition(!wasCancelled)
+                        }
+                })
+            }
+        }
 
     }
 
