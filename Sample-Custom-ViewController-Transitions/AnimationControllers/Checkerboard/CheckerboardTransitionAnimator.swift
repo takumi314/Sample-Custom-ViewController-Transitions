@@ -16,6 +16,47 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
 
     static let transionTime = 2.0
 
+    // Used to track how many slices have animations which are still in flight.
+    enum Status: Equatable {
+        case ready
+        case pending(Int)
+
+        static func ==(lhs: CheckerboardTransitionAnimator.Status, rhs: CheckerboardTransitionAnimator.Status) -> Bool {
+            switch (lhs, rhs) {
+            case (.ready, .ready):
+                return true
+            case (.pending(let left), .pending(let right)):
+                return left == right
+            default:
+                return false
+            }
+
+        }
+        mutating func add() {
+            switch self {
+            case .ready:
+                self = .pending(1)
+                break
+            case .pending(let value):
+                let new = value + 1
+                self = (new == 0) ? .ready : .pending(new)
+            }
+        }
+        mutating func reduce() {
+            switch self {
+            case .ready:
+                self = .pending(-1)
+                break
+            case .pending(let value):
+                let new = value - 1
+                self = (new == 0) ? .ready : .pending(new)
+                break
+            }
+        }
+    }
+
+    static var status: Status = .ready
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return CheckerboardTransitionAnimator.transionTime
     }
@@ -136,7 +177,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
         }
 
         // Used to track how many slices have animations which are still in flight.
-        var sliceAnimationsPending = 0
+        CheckerboardTransitionAnimator.status = .ready
 
         for y in 0 ..< verticalSlices {
             for x in 0 ..< horizontalSlices {
@@ -176,7 +217,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                 let startTime = TimeInterval(projectionLength / (projectionLength + transitionSpacing)) * tDuration
                 let duration = TimeInterval((projectionLength + vectorLength) / (vectorLength + transitionSpacing)) * tDuration - startTime
 
-                sliceAnimationsPending += 1
+                CheckerboardTransitionAnimator.status.add()
 
                 UIView.animate(
                     withDuration: duration,
@@ -188,8 +229,9 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                 },
                     completion: { (isFinished: Bool) in
                         // Finish the transition once the final animation completes.
-                        sliceAnimationsPending -= 1
-                        if sliceAnimationsPending == 0 {
+                        CheckerboardTransitionAnimator.status.reduce()
+                        print(CheckerboardTransitionAnimator.status)
+                        if CheckerboardTransitionAnimator.status == .ready {
                             let wasCancelled = transitionContext.transitionWasCancelled
 
                             transitionContainer.removeFromSuperview()
