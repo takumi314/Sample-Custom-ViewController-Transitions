@@ -117,6 +117,9 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
             transitionVector = CGVector(dx: minX - maxX, dy: minY - maxY)
         }
 
+        ///
+        /// 遷移の進行方向を示す方向ベクトル, ノルム, 単位ベクトル
+        ///
         let vectorLength = CGFloat(sqrt(transitionVector.dx * transitionVector.dx + transitionVector.dy * transitionVector.dy))
         let unitVector = CGVector(dx: transitionVector.dx / vectorLength,
                                   dy: transitionVector.dy / vectorLength)
