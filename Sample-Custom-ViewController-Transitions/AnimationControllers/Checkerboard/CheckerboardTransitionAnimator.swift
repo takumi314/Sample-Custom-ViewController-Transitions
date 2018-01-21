@@ -179,8 +179,8 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                     delay: startTime,
                     options: [.curveEaseInOut],
                     animations: {
-                        toCheckboardSquareView.layer.transform = CATransform3DIdentity
                         fromCheckboardSquareView.layer.transform = AnimationHelper.yRotate( .pi)
+                        toCheckboardSquareView.layer.transform = AnimationHelper.identity
                 },
                     completion: { (isFinished: Bool) in
                         // Finish the transition once the final animation completes.
@@ -248,7 +248,7 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
         fromCheckboardSquareView.isOpaque = false
         fromCheckboardSquareView.layer.masksToBounds = true
         fromCheckboardSquareView.layer.isDoubleSided = false
-        fromCheckboardSquareView.layer.transform = CATransform3DIdentity
+        fromCheckboardSquareView.layer.transform = AnimationHelper.identity
         fromCheckboardSquareView.layer.addSublayer(fromContentLayer)
 
         containerView.addSubview(toCheckboardSquareView)
