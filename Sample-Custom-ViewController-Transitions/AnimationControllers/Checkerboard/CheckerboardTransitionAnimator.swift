@@ -193,7 +193,25 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                                        spacing: transitionSpacing,
                                        duration: tDuration),
                     sliceAnimationsPending: 0,
-                    transitionContext: transitionContext)
+                    transitionContext: transitionContext,
+                    animations: { (fromView: UIView, toView: UIView) in
+                        fromView .layer.transform = AnimationHelper.yRotate( .pi)
+                        toView.layer.transform = AnimationHelper.identity
+                },
+                    completion: {
+                        // Finish the transition once the final animation completes.
+                        CheckerboardTransitionAnimator.status.reduce()
+                        if CheckerboardTransitionAnimator.status == .ready {
+                            let wasCancelled = transitionContext.transitionWasCancelled
+
+                            transitionContainer.removeFromSuperview()
+
+                            // When we complete, tell the transition context
+                            // passing along the BOOL that indicates whether the transition
+                            // finished or not.
+                            transitionContext.completeTransition(!wasCancelled)
+                        }
+                })
             }
         }
 
@@ -264,7 +282,9 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
                                                         spacing: CGFloat,
                                                         duration: TimeInterval),
                                    sliceAnimationsPending: Int,
-                                   transitionContext: UIViewControllerContextTransitioning) {
+                                   transitionContext: UIViewControllerContextTransitioning,
+                                   animations: @escaping (_ fromView: UIView, _ toView: UIView) -> Void,
+                                   completion: (() -> Void)?) {
 
         let x = Int(latice.column)
         let y = Int(latice.row)
@@ -312,21 +332,11 @@ extension CheckerboardTransitionAnimator: UIViewControllerAnimatedTransitioning 
             delay: startTime,
             options: [.curveEaseInOut],
             animations: {
-                fromCheckboardSquareView.layer.transform = AnimationHelper.yRotate( .pi)
-                toCheckboardSquareView.layer.transform = AnimationHelper.identity
+                animations(fromCheckboardSquareView, toCheckboardSquareView)
         },
             completion: { (isFinished: Bool) in
-                // Finish the transition once the final animation completes.
-                CheckerboardTransitionAnimator.status.reduce()
-                if CheckerboardTransitionAnimator.status == .ready {
-                    let wasCancelled = transitionContext.transitionWasCancelled
-
-                    transitionContainer.removeFromSuperview()
-
-                    // When we complete, tell the transition context
-                    // passing along the BOOL that indicates whether the transition
-                    // finished or not.
-                    transitionContext.completeTransition(!wasCancelled)
+                if let completion = completion {
+                    completion()
                 }
         })
     }
