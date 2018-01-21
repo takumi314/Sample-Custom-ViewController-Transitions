@@ -14,6 +14,12 @@ enum Direction {
 
 class AnimationHelper {
 
+    static var identity: CATransform3D {
+        get {
+            return CATransform3DIdentity
+        }
+    }
+
     static func rotate(_ angle: Double, x: Double, y: Double, z: Double) -> CATransform3D {
         return CATransform3DMakeRotation(CGFloat(angle), CGFloat(x), CGFloat(y), CGFloat(z))
     }
