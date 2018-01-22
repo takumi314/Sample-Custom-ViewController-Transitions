@@ -23,6 +23,8 @@
 		E115E11F200F955100B6BDE3 /* FilipDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */; };
 		E1F3FD902015F31D002A1F6E /* PresentationFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F3FD8F2015F31D002A1F6E /* PresentationFirstViewController.swift */; };
 		E1F3FD922015F3CE002A1F6E /* PresentationSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F3FD912015F3CE002A1F6E /* PresentationSecondViewController.swift */; };
+		E1F3FD942015F50D002A1F6E /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F3FD932015F50D002A1F6E /* CustomPresentationController.swift */; };
+		E1F3FD952015F50D002A1F6E /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F3FD932015F50D002A1F6E /* CustomPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,7 @@
 		E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilipDismissAnimationController.swift; sourceTree = "<group>"; };
 		E1F3FD8F2015F31D002A1F6E /* PresentationFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationFirstViewController.swift; sourceTree = "<group>"; };
 		E1F3FD912015F3CE002A1F6E /* PresentationSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSecondViewController.swift; sourceTree = "<group>"; };
+		E1F3FD932015F50D002A1F6E /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +207,7 @@
 			children = (
 				E1F3FD8F2015F31D002A1F6E /* PresentationFirstViewController.swift */,
 				E1F3FD912015F3CE002A1F6E /* PresentationSecondViewController.swift */,
+				E1F3FD932015F50D002A1F6E /* CustomPresentationController.swift */,
 			);
 			path = Presentations;
 			sourceTree = "<group>";
@@ -350,6 +354,7 @@
 				E115E113200CC81F00B6BDE3 /* AnimationHelper.swift in Sources */,
 				E115E0E3200BB71200B6BDE3 /* ViewController.swift in Sources */,
 				E1F3FD902015F31D002A1F6E /* PresentationFirstViewController.swift in Sources */,
+				E1F3FD942015F50D002A1F6E /* CustomPresentationController.swift in Sources */,
 				E115E0E1200BB71200B6BDE3 /* AppDelegate.swift in Sources */,
 				E1F3FD922015F3CE002A1F6E /* PresentationSecondViewController.swift in Sources */,
 				E115E115200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift in Sources */,
@@ -368,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1F3FD952015F50D002A1F6E /* CustomPresentationController.swift in Sources */,
 				E115E101200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
