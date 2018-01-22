@@ -35,6 +35,14 @@ class PresentationFirstViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func onPushed(_ sender: UIButton) {
+        guard let secondVC = storyboard?.instantiateViewController(withIdentifier: PresentationSecondViewController.identifier) else {
+            return
+        }
+        let presentaion = CustomPresentationController(presentedViewController: secondVC, presenting: self)
+
+        secondVC.transitioningDelegate = presentaion
+
+        present(secondVC, animated: true, completion: nil)
     }
     
 }
