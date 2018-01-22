@@ -31,4 +31,9 @@ class PresentationSecondViewController: UIViewController {
     }
     */
 
+    // MARK: - IBActions
+
+    @IBAction func sliderDidChangeValue(_ sender: UISlider) {
+    }
+
 }
