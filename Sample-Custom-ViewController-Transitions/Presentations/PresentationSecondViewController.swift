@@ -32,7 +32,17 @@ class PresentationSecondViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
+
+    // MARK: - Private method
+
+    func updatePreferredContentSize(with traitCollection: UITraitCollection) {
+        let verticalSize: CGFloat = traitCollection.verticalSizeClass == .compact ? 270 : 420
+        preferredContentSize = CGSize(width: self.view.bounds.size.width, height: verticalSize)
+
+        // MEMO: set up Slider Initial Values in the following
+    }
+
 
     /*
     // MARK: - Navigation
