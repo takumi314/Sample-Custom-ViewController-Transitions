@@ -12,6 +12,8 @@ class CustomPresentationController: UIPresentationController {
 
 }
 
+    //: - UIViewControllerTransitioningDelegate
+
 extension CustomPresentationController: UIViewControllerTransitioningDelegate {
 
 }
