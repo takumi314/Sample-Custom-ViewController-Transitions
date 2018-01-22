@@ -11,3 +11,7 @@ import UIKit
 class CustomPresentationController: UIPresentationController {
 
 }
+
+extension CustomPresentationController: UIViewControllerTransitioningDelegate {
+
+}
