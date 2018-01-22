@@ -19,6 +19,14 @@ class PresentationSecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        /// NOTE: View controllers presented with custom presentation controllers
+        ///       do not assume control of the status bar appearance by default
+        ///       (their -preferredStatusBarStyle and -prefersStatusBarHidden
+        ///       methods are not called).  You can override this behavior by
+        ///       setting the value of the presented view controller's
+        ///       modalPresentationCapturesStatusBarAppearance property to true.
+        /* self.modalPresentationCapturesStatusBarAppearance = true; */
     }
 
     override func didReceiveMemoryWarning() {
