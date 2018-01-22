@@ -56,7 +56,7 @@
 		E115E100200BB71200B6BDE3 /* Sample_Custom_ViewController_TransitionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_Custom_ViewController_TransitionsUITests.swift; sourceTree = "<group>"; };
 		E115E102200BB71200B6BDE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E115E112200CC81E00B6BDE3 /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
-		E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlipPresentAnimationController.swift; path = "Sample-Custom-ViewController-Transitions/AnimationControllers/FlipPresentAnimationController.swift"; sourceTree = SOURCE_ROOT; };
+		E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlipPresentAnimationController.swift; path = "Sample-Custom-ViewController-Transitions/AnimationControllers/FlipAnimation/FlipPresentAnimationController.swift"; sourceTree = SOURCE_ROOT; };
 		E115E117200E5E6100B6BDE3 /* CardFrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFrontViewController.swift; sourceTree = "<group>"; };
 		E115E119200E63DB00B6BDE3 /* RevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 		E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProtocol.swift; sourceTree = "<group>"; };
@@ -154,9 +154,8 @@
 		E115E110200BB87200B6BDE3 /* AnimationControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E1F3FD8D2015EED0002A1F6E /* FlipAnimation */,
 				E107F1192013839000CDDF2C /* Checkerboard */,
-				E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */,
-				E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */,
 			);
 			path = AnimationControllers;
 			sourceTree = "<group>";
@@ -184,6 +183,15 @@
 				E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		E1F3FD8D2015EED0002A1F6E /* FlipAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				E115E114200CFC6F00B6BDE3 /* FlipPresentAnimationController.swift */,
+				E115E11E200F955100B6BDE3 /* FilipDismissAnimationController.swift */,
+			);
+			path = FlipAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
