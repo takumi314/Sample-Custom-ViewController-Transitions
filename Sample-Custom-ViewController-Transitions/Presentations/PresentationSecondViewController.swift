@@ -19,7 +19,8 @@ class PresentationSecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        updatePreferredContentSize(with: traitCollection)
+        
         /// NOTE: View controllers presented with custom presentation controllers
         ///       do not assume control of the status bar appearance by default
         ///       (their -preferredStatusBarStyle and -prefersStatusBarHidden
