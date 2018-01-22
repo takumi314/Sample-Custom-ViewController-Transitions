@@ -81,6 +81,9 @@
                         <viewLayoutGuide key="safeArea" id="Tvh-9B-5Js"/>
                     </view>
                     <size key="freeformSize" width="800" height="260"/>
+                    <connections>
+                        <outlet property="slider" destination="QLB-o3-Toe" id="v3A-hj-w93"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wqO-s3-Wuh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

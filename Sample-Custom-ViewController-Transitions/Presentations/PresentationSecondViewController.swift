@@ -10,7 +10,12 @@ import UIKit
 
 class PresentationSecondViewController: UIViewController {
 
+    // MARK: - IBOutlet
+
+    @IBOutlet weak var slider: UISlider!
+
     // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
