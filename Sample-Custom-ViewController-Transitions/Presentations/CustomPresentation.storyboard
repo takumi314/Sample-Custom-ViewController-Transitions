@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Presentation First View Controller-->
+        <scene sceneID="TAs-FO-CQI">
+            <objects>
+                <viewController storyboardIdentifier="PresentationFirstViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LrQ-HX-5j4" customClass="PresentationFirstViewController" customModule="Sample_Custom_ViewController_Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wqf-zb-TR0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3O-eT-5PF">
+                                <rect key="frame" x="159.5" y="617" width="57" height="30"/>
+                                <state key="normal" title="Present "/>
+                                <connections>
+                                    <action selector="onPushed:" destination="LrQ-HX-5j4" eventType="touchUpInside" id="zc8-De-02d"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhw-Lc-k19">
+                                <rect key="frame" x="149.5" y="261.5" width="76" height="144"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="120"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jbG-Db-gF2" firstAttribute="bottom" secondItem="X3O-eT-5PF" secondAttribute="bottom" constant="20" id="Ton-wi-pa3"/>
+                            <constraint firstItem="Jhw-Lc-k19" firstAttribute="centerX" secondItem="Wqf-zb-TR0" secondAttribute="centerX" id="V8R-HN-EYI"/>
+                            <constraint firstItem="Jhw-Lc-k19" firstAttribute="centerY" secondItem="Wqf-zb-TR0" secondAttribute="centerY" id="haJ-Sg-HUf"/>
+                            <constraint firstItem="X3O-eT-5PF" firstAttribute="centerX" secondItem="Wqf-zb-TR0" secondAttribute="centerX" id="kb4-dU-lK5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jbG-Db-gF2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UyL-eQ-5e4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-113" y="161"/>
+        </scene>
+    </scenes>
+</document>

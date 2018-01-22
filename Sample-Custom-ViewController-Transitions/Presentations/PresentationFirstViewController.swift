@@ -30,5 +30,7 @@ class PresentationFirstViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func onPushed(_ sender: UIButton) {
+    }
+    
 }
