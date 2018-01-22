@@ -15,3 +15,17 @@ class CustomPresentationController: UIPresentationController {
 extension CustomPresentationController: UIViewControllerTransitioningDelegate {
 
 }
+
+    //: - UIViewControllerAnimatedTransitioning
+
+extension CustomPresentationController: UIViewControllerAnimatedTransitioning {
+
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 2.0
+    }
+
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+
+    }
+
+}
