@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3O-eT-5PF">
-                                <rect key="frame" x="159.5" y="617" width="57" height="30"/>
+                                <rect key="frame" x="159" y="617" width="57" height="30"/>
                                 <state key="normal" title="Present "/>
                                 <connections>
                                     <action selector="onPushed:" destination="LrQ-HX-5j4" eventType="touchUpInside" id="zc8-De-02d"/>
@@ -45,6 +47,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyL-eQ-5e4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-113" y="161"/>
+        </scene>
+        <!--Presentation Second View Controller-->
+        <scene sceneID="6eu-2q-mUX">
+            <objects>
+                <viewController storyboardIdentifier="PresentationSecondViewController" id="Hk6-jt-VhT" customClass="PresentationSecondViewController" customModule="Sample_Custom_ViewController_Transitions" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CrE-YA-qCf">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="260"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qig-AO-o7D">
+                                <rect key="frame" x="363.5" y="0.0" width="73" height="144"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="120"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="QLB-o3-Toe">
+                                <rect key="frame" x="18" y="190" width="772" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qig-AO-o7D" firstAttribute="trailingMargin" secondItem="CrE-YA-qCf" secondAttribute="trailing" constant="-371.5" id="7t0-l6-x8D"/>
+                            <constraint firstItem="qig-AO-o7D" firstAttribute="centerX" secondItem="CrE-YA-qCf" secondAttribute="centerX" id="EfY-yF-eVo"/>
+                            <constraint firstItem="Tvh-9B-5Js" firstAttribute="bottom" secondItem="QLB-o3-Toe" secondAttribute="bottom" constant="40" id="FRe-uE-ab3"/>
+                            <constraint firstItem="QLB-o3-Toe" firstAttribute="leading" secondItem="CrE-YA-qCf" secondAttribute="leadingMargin" id="IjR-3W-J6q"/>
+                            <constraint firstItem="QLB-o3-Toe" firstAttribute="trailingMargin" secondItem="CrE-YA-qCf" secondAttribute="trailingMargin" id="MjV-hG-deN"/>
+                            <constraint firstItem="qig-AO-o7D" firstAttribute="top" secondItem="Tvh-9B-5Js" secondAttribute="top" id="tJP-AT-lJJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tvh-9B-5Js"/>
+                    </view>
+                    <size key="freeformSize" width="800" height="260"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wqO-s3-Wuh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-21" y="667"/>
         </scene>
     </scenes>
 </document>
