@@ -42,6 +42,9 @@ class PresentationSecondViewController: UIViewController {
         preferredContentSize = CGSize(width: self.view.bounds.size.width, height: verticalSize)
 
         // MEMO: set up Slider Initial Values in the following
+        slider.maximumValue = Float(preferredContentSize.height)
+        slider.minimumValue = 220.0
+        slider.value = slider.maximumValue
     }
 
 
