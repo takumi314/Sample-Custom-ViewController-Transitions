@@ -31,6 +31,12 @@ class RevealViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func onNext(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "CustomPresentation", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: PresentationFirstViewController.identifier)
+        present(vc, animated: true, completion: nil)
+    }
 
     @IBAction func onBack(_ sender: UIButton) {
         dismiss(completion: nil)
