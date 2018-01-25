@@ -130,7 +130,7 @@ class CustomPresentationController: UIPresentationController {
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
-        if completed {
+        if !completed {
             presentationWrappingView = nil
             dimmingView = nil
         }
@@ -141,7 +141,10 @@ class CustomPresentationController: UIPresentationController {
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
-        super.dismissalTransitionDidEnd(completed)
+        if completed {
+            presentationWrappingView = nil
+            dimmingView = nil
+        }
     }
 
     // MARK: - Layouts
