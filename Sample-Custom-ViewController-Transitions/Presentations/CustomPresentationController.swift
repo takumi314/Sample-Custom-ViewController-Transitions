@@ -9,6 +9,8 @@
 import UIKit
 
 let CORNER_RADIUS: CGFloat = 6.0
+let ALPHA_MAX_VALUE: CGFloat = 0.5
+let ALPHA_MIN_VALUE: CGFloat = 0.0
 
 class CustomPresentationController: UIPresentationController {
 
@@ -117,10 +119,10 @@ class CustomPresentationController: UIPresentationController {
             // Get the transition coordinator for the presentation so we can
             // fade in the dimmingView alongside the presentation animation.
             let transitionCoordinator = presentingViewController.transitionCoordinator
-            dimmingView.alpha = 0.0
+            dimmingView.alpha = ALPHA_MIN_VALUE
             transitionCoordinator?.animate(
                 alongsideTransition: { (context) in
-                    self.dimmingView?.alpha = 0.5
+                    self.dimmingView?.alpha = ALPHA_MAX_VALUE
             }, completion: nil)
 
         }
