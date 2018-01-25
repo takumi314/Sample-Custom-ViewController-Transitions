@@ -128,6 +128,7 @@
 		E115E0DF200BB71100B6BDE3 /* Sample-Custom-ViewController-Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				E140F0BE201A4EC60081B74D /* Parts */,
 				E1F3FD8E2015F109002A1F6E /* Presentations */,
 				E115E11B200F8D6600B6BDE3 /* Commons */,
 				E115E116200E5DA100B6BDE3 /* ViewControllers */,
@@ -193,6 +194,13 @@
 				E115E11C200F8D8B00B6BDE3 /* CommonProtocol.swift */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		E140F0BE201A4EC60081B74D /* Parts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Parts;
 			sourceTree = "<group>";
 		};
 		E1F3FD8D2015EED0002A1F6E /* FlipAnimation */ = {
