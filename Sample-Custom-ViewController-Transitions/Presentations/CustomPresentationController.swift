@@ -27,6 +27,35 @@ class CustomPresentationController: UIPresentationController {
 
 extension CustomPresentationController: UIViewControllerTransitioningDelegate {
 
+    ///  If the modalPresentationStyle of the presented view controller is
+    ///  UIModalPresentationCustom, the system calls this method on the presented
+    ///  view controller's transitioningDelegate to retrieve the presentation
+    ///  controller that will manage the presentation.  If your implementation
+    ///  returns nil, an instance of UIPresentationController is used.
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        assert(presentedViewController == presented, "You didn't initialize \(self) with the correct presentedViewController.  Expected \(presented), got \(presentedViewController).")
+        return self
+    }
+
+    ///  If the modalPresentationStyle of the presented view controller is
+    ///  UIModalPresentationCustom, the system calls this method on the presented
+    ///  view controller's transitioningDelegate to retrieve the presentation
+    ///  controller that will manage the presentation.  If your implementation
+    ///  returns nil, an instance of UIPresentationController is used.
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+
+    ///  The system calls this method on the presented view controller's
+    ///  transitioningDelegate to retrieve the animator object used for animating
+    ///  the dismissal of the presented view controller.  Your implementation is
+    ///  expected to return an object that conforms to the
+    ///  UIViewControllerAnimatedTransitioning protocol, or nil if the default
+    ///  dismissal animation should be used.
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self
+    }
+
 }
 
     //: - UIViewControllerAnimatedTransitioning
