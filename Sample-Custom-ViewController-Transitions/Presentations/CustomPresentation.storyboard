@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -71,7 +70,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qig-AO-o7D" firstAttribute="trailingMargin" secondItem="CrE-YA-qCf" secondAttribute="trailing" constant="-371.5" id="7t0-l6-x8D"/>
                             <constraint firstItem="qig-AO-o7D" firstAttribute="centerX" secondItem="CrE-YA-qCf" secondAttribute="centerX" id="EfY-yF-eVo"/>
                             <constraint firstItem="Tvh-9B-5Js" firstAttribute="bottom" secondItem="QLB-o3-Toe" secondAttribute="bottom" constant="40" id="FRe-uE-ab3"/>
                             <constraint firstItem="QLB-o3-Toe" firstAttribute="leading" secondItem="CrE-YA-qCf" secondAttribute="leadingMargin" id="IjR-3W-J6q"/>
