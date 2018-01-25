@@ -34,7 +34,10 @@ extension CustomPresentationController: UIViewControllerTransitioningDelegate {
 extension CustomPresentationController: UIViewControllerAnimatedTransitioning {
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 2.0
+        guard let isAnimated = transitionContext?.isAnimated else {
+            return 0
+        }
+        return isAnimated ? 0.5 : 0
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
