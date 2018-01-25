@@ -137,7 +137,10 @@ class CustomPresentationController: UIPresentationController {
     }
 
     override func dismissalTransitionWillBegin() {
-        super.dismissalTransitionWillBegin()
+        let transitionCoordinator = presentingViewController.transitionCoordinator
+        transitionCoordinator?.animate(alongsideTransition: { (context) in
+            self.dimmingView?.alpha = ALPHA_MIN_VALUE
+        }, completion: nil)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
