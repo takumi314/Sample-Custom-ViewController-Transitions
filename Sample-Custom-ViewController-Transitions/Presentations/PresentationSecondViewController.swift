@@ -51,6 +51,7 @@ class PresentationSecondViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func sliderDidChangeValue(_ sender: UISlider) {
+        preferredContentSize =  CGSize(width: view.bounds.size.width, height: CGFloat(sender.value))
     }
 
 }
