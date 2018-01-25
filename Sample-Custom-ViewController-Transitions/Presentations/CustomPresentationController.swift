@@ -10,6 +10,12 @@ import UIKit
 
 class CustomPresentationController: UIPresentationController {
 
+    // MARK: - Private property
+
+    private var dimmingView: UIView? = nil
+    private var presentationWrappingView: UIView? = nil
+
+
     // MARK: - Initializer
 
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
