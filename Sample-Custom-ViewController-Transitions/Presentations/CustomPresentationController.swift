@@ -8,6 +8,8 @@
 
 import UIKit
 
+let CORNER_RADIUS: CGFloat = 6.0
+
 class CustomPresentationController: UIPresentationController {
 
     // MARK: - Private property
@@ -26,6 +28,175 @@ class CustomPresentationController: UIPresentationController {
 
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 
+    }
+
+
+    // MARK: - Override property (UIPresentationController)
+
+    override var presentedView: UIView? {
+        get {
+            // Return the wrapping view created in -presentationTransitionWillBegin.
+            return presentationWrappingView
+        }
+        set {
+            self.presentationWrappingView = presentedView
+        }
+    }
+
+
+    // MARK: - Override methods (UIPresentationController)
+
+    override func presentationTransitionWillBegin() {
+        guard let presentedViewControllerView = super.presentedView else {
+            return
+        }
+
+        // Wrap the presented view controller's view in an intermediate hierarchy
+        // that applies a shadow and rounded corners to the top-left and top-right
+        // edges.  The final effect is built using three intermediate views.
+        //
+        // presentationWrapperView              <- shadow
+        //   |- presentationRoundedCornerView   <- rounded corners (masksToBounds)
+        //        |- presentedViewControllerWrapperView
+        //             |- presentedViewControllerView (presentedViewController.view)
+        //
+        do {
+            let presentationWrapperView = UIView(frame: frameOfPresentedViewInContainerView)
+            presentationWrapperView.layer.shadowOpacity = 0.44
+            presentationWrapperView.layer.shadowRadius = 13.0
+            presentationWrapperView.layer.shadowOffset = CGSize(width: 0.0, height: -6.0)
+            self.presentationWrappingView = presentationWrapperView
+
+            // presentationRoundedCornerView is CORNER_RADIUS points taller than the
+            // height of the presented view controller's view.  This is because
+            // the cornerRadius is applied to all corners of the view.  Since the
+            // effect calls for only the top two corners to be rounded we size
+            // the view such that the bottom CORNER_RADIUS points lie below
+            // the bottom edge of the screen.
+            let edgeInsetsInsetRect = UIEdgeInsetsInsetRect(presentationWrapperView.bounds,
+                                                            UIEdgeInsetsMake(0, 0, -CORNER_RADIUS, 0))
+            let presentationRoundedCornerView = UIView(frame: edgeInsetsInsetRect)
+            presentationRoundedCornerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            presentationRoundedCornerView.layer.cornerRadius = CORNER_RADIUS
+            presentationRoundedCornerView.layer.masksToBounds = true
+
+            // To undo the extra height added to presentationRoundedCornerView,
+            // presentedViewControllerWrapperView is inset by CORNER_RADIUS points.
+            // This also matches the size of presentedViewControllerWrapperView's
+            // bounds to the size of -frameOfPresentedViewInContainerView.
+            let presentedViewControllerWrapperView = UIView(frame: UIEdgeInsetsInsetRect(presentationRoundedCornerView.bounds,
+                                                                                         UIEdgeInsetsMake(0, 0, CORNER_RADIUS, 0) ))
+            presentedViewControllerWrapperView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+            // Add presentedViewControllerView -> presentedViewControllerWrapperView.
+            presentedViewControllerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            presentedViewControllerView.frame = presentedViewControllerWrapperView.bounds
+            presentedViewControllerWrapperView.addSubview(presentedViewControllerView)
+
+            // Add presentedViewControllerWrapperView -> presentationRoundedCornerView.
+            presentationRoundedCornerView.addSubview(presentedViewControllerWrapperView)
+
+            // Add presentationRoundedCornerView -> presentationWrapperView.
+            presentationWrapperView.addSubview(presentationRoundedCornerView)
+        }
+
+        // Add a dimming view behind presentationWrapperView.  self.presentedView
+        // is added later (by the animator) so any views added here will be
+        // appear behind the -presentedView.
+        do {
+            guard let frame = containerView?.bounds else { return }
+            let dimmingView = UIView(frame: frame)
+            dimmingView.backgroundColor = .black
+            dimmingView.isOpaque = false
+            dimmingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+            dimmingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dimmingViewTapped)))
+            self.dimmingView = dimmingView
+            containerView?.addSubview(dimmingView)
+
+            // Get the transition coordinator for the presentation so we can
+            // fade in the dimmingView alongside the presentation animation.
+            let transitionCoordinator = presentingViewController.transitionCoordinator
+            dimmingView.alpha = 0.0
+            transitionCoordinator?.animate(
+                alongsideTransition: { (context) in
+                    self.dimmingView?.alpha = 0.5
+            }, completion: nil)
+
+        }
+
+    }
+
+    override func presentationTransitionDidEnd(_ completed: Bool) {
+        if completed {
+            presentationWrappingView = nil
+            dimmingView = nil
+        }
+    }
+
+    override func dismissalTransitionWillBegin() {
+        super.dismissalTransitionWillBegin()
+    }
+
+    override func dismissalTransitionDidEnd(_ completed: Bool) {
+        super.dismissalTransitionDidEnd(completed)
+    }
+
+    // MARK: - Layouts
+
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+
+        if presentedViewController.conforms(to: UIContentContainer.self) {
+            containerView?.setNeedsLayout()
+        }
+    }
+
+    ///  When the presentation controller receives a
+    ///  -viewWillTransitionToSize:withTransitionCoordinator: message it calls this
+    ///  method to retrieve the new size for the presentedViewController's view.
+    ///  The presentation controller then sends a
+    ///  -viewWillTransitionToSize:withTransitionCoordinator: message to the
+    ///  presentedViewController with this size as the first argument.
+    ///
+    ///  Note that it is up to the presentation controller to adjust the frame
+    ///  of the presented view controller's view to match this promised size.
+    ///  We do this in -containerViewWillLayoutSubviews.
+    override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
+        if container.isEqual(presentedViewController) {
+            return container.preferredContentSize
+        } else {
+            return super.size(forChildContentContainer: container, withParentContainerSize: parentSize)
+        }
+    }
+
+    /// 表示される View Controller のフレームを設定する
+    override var frameOfPresentedViewInContainerView: CGRect {
+        get {
+            guard let containerViewBounds = containerView?.bounds else { return CGRect() }
+            let presentedViewControllerSize = size(forChildContentContainer: presentedViewController,
+                                                   withParentContainerSize: containerViewBounds.size)
+
+            // The presented view extends presentedViewContentSize.height points from
+            // the bottom edge of the screen.
+            var presentedViewControllerFrame = containerViewBounds
+            presentedViewControllerFrame.size.height = presentedViewControllerSize.height
+            presentedViewControllerFrame.origin.y = containerViewBounds.maxY - presentedViewControllerSize.height
+            return presentedViewControllerFrame
+        }
+    }
+
+    override func containerViewDidLayoutSubviews() {
+         super.containerViewDidLayoutSubviews()
+    }
+
+    //  IBAction for the tap gesture recognizer added to the dimmingView.
+    //  Dismisses the presented view controller.
+    override func containerViewWillLayoutSubviews() {
+        super.containerViewWillLayoutSubviews()
+
+        dimmingView?.frame = (self.containerView?.bounds)!
+        presentationWrappingView?.frame = self.frameOfPresentedViewInContainerView
     }
 
     // MARK: - IBAction
