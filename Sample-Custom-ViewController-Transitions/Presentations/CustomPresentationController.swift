@@ -27,6 +27,12 @@ class CustomPresentationController: UIPresentationController {
         presentedViewController.modalPresentationStyle = .custom
     }
 
+    // MARK: - IBAction
+
+    @IBAction func dimmingViewTapped(_ gesture: UITapGestureRecognizer) {
+        presentingViewController.dismiss(animated: true, completion: nil)
+    }
+
 }
 
     //: - UIViewControllerTransitioningDelegate
