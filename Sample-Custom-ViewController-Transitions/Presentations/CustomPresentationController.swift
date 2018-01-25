@@ -19,12 +19,13 @@ class CustomPresentationController: UIPresentationController {
     // MARK: - Initializer
 
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
-        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
-
         // The presented view controller must have a modalPresentationStyle
         // of UIModalPresentationCustom for a custom presentation controller
         // to be used.
         presentedViewController.modalPresentationStyle = .custom
+
+        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
+
     }
 
     // MARK: - IBAction
