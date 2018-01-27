@@ -25,11 +25,11 @@ class PresentationFirstViewController: UIViewController {
 
         let promptView = UserPromptView(text: "Tap here next", arrowPosition: .center)
         promptView.backgroundColor = .clear
-        view.addSubview(promptView)
         promptView.center = CGPoint(
             x: pushButton.center.x,
             y: pushButton.center.y - ( promptView.frame.height + pushButton.frame.height ) / 2.0 + 5.0
         )
+        self.view.addSubview(promptView)
         self.promptView = promptView
     }
 
