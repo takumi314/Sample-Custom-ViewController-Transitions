@@ -12,10 +12,25 @@ class PresentationFirstViewController: UIViewController {
 
     @IBOutlet weak var pushButton: UIButton!
 
+    var promptView: UIView? = nil
+
     // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let promptView = UserPromptView(text: "Tap here next", arrowPosition: .center)
+        promptView.backgroundColor = .clear
+        promptView.center.x = pushButton.center.x
+        promptView.center.y = pushButton.center.y
+            - ( promptView.frame.height + self.pushButton.frame.height ) / 2.0 + 5.0
+
+        view.addSubview(promptView)
+        self.promptView = promptView
     }
 
     override func didReceiveMemoryWarning() {
