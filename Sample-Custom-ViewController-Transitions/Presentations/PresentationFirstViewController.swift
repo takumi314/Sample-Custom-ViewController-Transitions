@@ -27,8 +27,8 @@ class PresentationFirstViewController: UIViewController {
         promptView.backgroundColor = .clear
         view.addSubview(promptView)
         promptView.center = CGPoint(
-            x: self.pushButton.center.x,
-            y: self.pushButton.center.y - ( promptView.frame.height + self.pushButton.frame.height ) / 2.0 + 5.0
+            x: pushButton.center.x,
+            y: pushButton.center.y - ( promptView.frame.height + pushButton.frame.height ) / 2.0 + 5.0
         )
         self.promptView = promptView
     }
