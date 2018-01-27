@@ -34,16 +34,10 @@ class PresentationFirstViewController: UIViewController {
         self.view.addSubview(promptView)
         self.promptView = promptView
 
-        Timer.scheduledTimer(
-            withTimeInterval: 0.5,
-            repeats: false,
-            block: { [unowned self] _ in
-                UIView.animate(
-                    withDuration: 0.3,
-                    animations: {
-                        self.promptView?.alpha = 1.0
-                })
-        })
+        fadein(afterTime: 0.1) { [unowned self] in
+            self.promptView?.alpha = 1.0
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,4 +64,45 @@ class PresentationFirstViewController: UIViewController {
         present(secondVC, animated: true, completion: nil)
     }
     
+    // MAKR: - Privete mathod
+
+    func fadein(afterTime delay: TimeInterval, outcomingTo animation: @escaping () -> ()) {
+        let duration = 0.1
+        let animations = {  (duration: TimeInterval) -> ()  in
+            UIView.animate(
+                withDuration: duration,
+                animations: {
+                    animation()
+            })
+        }
+
+        if #available(iOS 10.0, *) {
+            Timer.scheduledTimer(
+                withTimeInterval: delay,
+                repeats: false,
+                block: {_ in
+                    animations(duration)
+            })
+        } else {
+            // iOS9 or earlier
+            Timer.scheduledTimer(
+                timeInterval: delay,
+                target: self,
+                selector: #selector(didRecieveNotification(_:)),
+                userInfo: ["ANIMATION_FADEOUT": animations,
+                           "ANIMATION_DURATION": duration],
+                repeats: false
+            )
+        }
+    }
+
+    @objc func didRecieveNotification(_ timer: Timer) {
+        guard let userInfo = timer.userInfo as? [String: Any],
+            let outcome =  userInfo["ANIMATION_FADEOUT"] as? ((TimeInterval) -> ()),
+            let duration = userInfo["ANIMATION_DURATION"] as? TimeInterval else {
+                return
+        }
+        outcome(duration)
+    }
+
 }
