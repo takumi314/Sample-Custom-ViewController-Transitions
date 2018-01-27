@@ -10,6 +10,8 @@ import UIKit
 
 class PresentationFirstViewController: UIViewController {
 
+    @IBOutlet weak var pushButton: UIButton!
+
     // MARK: - Life cycle
 
     override func viewDidLoad() {
