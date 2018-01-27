@@ -34,16 +34,10 @@ class PresentationFirstViewController: UIViewController {
         self.view.addSubview(promptView)
         self.promptView = promptView
 
-        Timer.scheduledTimer(
-            withTimeInterval: 0.5,
-            repeats: false,
-            block: { [unowned self] _ in
-                UIView.animate(
-                    withDuration: 0.3,
-                    animations: {
-                        self.promptView?.alpha = 1.0
-                })
-        })
+        fadein(afterTime: 0.1) { [unowned self] in
+            self.promptView?.alpha = 1.0
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
