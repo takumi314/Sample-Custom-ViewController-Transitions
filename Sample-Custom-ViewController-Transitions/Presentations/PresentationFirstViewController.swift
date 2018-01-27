@@ -25,12 +25,25 @@ class PresentationFirstViewController: UIViewController {
 
         let promptView = UserPromptView(text: "Tap here next", arrowPosition: .center)
         promptView.backgroundColor = .clear
+        promptView.alpha = 0.0
         promptView.center = CGPoint(
             x: pushButton.center.x,
             y: pushButton.center.y - ( promptView.frame.height + pushButton.frame.height ) / 2.0 + 5.0
         )
+
         self.view.addSubview(promptView)
         self.promptView = promptView
+
+        Timer.scheduledTimer(
+            withTimeInterval: 0.5,
+            repeats: false,
+            block: { [unowned self] _ in
+                UIView.animate(
+                    withDuration: 0.3,
+                    animations: {
+                        self.promptView?.alpha = 1.0
+                })
+        })
     }
 
     override func didReceiveMemoryWarning() {
