@@ -54,6 +54,12 @@ class PresentationFirstViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func onPushed(_ sender: UIButton) {
+        UIView.animate(
+            withDuration: 0.3,
+            animations: {
+                self.promptView?.alpha = 0.0
+                self.promptView?.isHidden = true
+        })
         guard let secondVC = storyboard?.instantiateViewController(withIdentifier: PresentationSecondViewController.identifier) else {
             return
         }
